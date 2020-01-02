@@ -1,39 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
+
+using HackerF.Interface;
 using HackerF.Model;
 
-/*singleton pattern*/
-public sealed class CoreInstaller
+public class CoreInstaller
 {
-    private static CoreInstaller _coreInstaller = null;
-    private static WindsorContainer _container;
+    public static WindsorContainer _container;
 
-    public static CoreInstaller getInstance() 
-    {
-        if (_coreInstaller == null)
-            return new CoreInstaller();
-        else
-            return _coreInstaller;
-    }
-
-    public IMenu Initialise() 
+    public void Initialise() 
     {
         if (_container != null)
-            return null;
+            return;
 
         _container = new WindsorContainer();
+        _container.Kernel.Resolver.AddSubResolver(new ListResolver(_container.Kernel));
 
         _container.Register(
-            Component.For<IMenu>().ImplementedBy<Menu>()
-        
+            Component.For<IMenuItem>().ImplementedBy<Hotkey>()
         );
 
-        var menu = _container.Resolve<IMenu>();
+        _container.Register(
+            Component.For<IMenu>().ImplementedBy<CheatingSheet>()
+        );
 
-        return menu;
+        var cheatSheet = _container.Resolve<IMenu>();
+        cheatSheet.Show();
     }
 }
 

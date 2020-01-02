@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+
+using HackerF.Model;
 
 namespace HackerF
 {
@@ -7,9 +10,7 @@ namespace HackerF
     {
         static void Main(string[] args)
         {
-            var menu = CoreInstaller.getInstance().Initialise();
-
-            menu.Show();
+            var hackerF = new HackerFApp();
         }
     }
 }
