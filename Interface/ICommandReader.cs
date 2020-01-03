@@ -4,8 +4,8 @@ using System.Linq;
 
 namespace HackerF.Interface
 {
-    public interface IMenuItem
+    interface ICommandReader
     {
-        public String Description { get; set; }
+        void ReadKey();
     }
 }

@@ -8,23 +8,30 @@ namespace HackerF.Model
 {
     public class CheatingSheet : IMenu
     {
-        public IList<IMenuItem> Items { get; set; }
+        public List<Hotkey> Items { get; set; }
 
-        public CheatingSheet(IList<IMenuItem> menuItems) 
+        public CheatingSheet() 
         {
-            Items = menuItems;
+            Items = new List<Hotkey>();
+            InitialiseCheatingSheet();
         }
 
-        public void Initialise()
+        private void InitialiseCheatingSheet() 
         {
-            
+            var initialHotkeys = new List<Hotkey>
+            {
+                new Hotkey() { HotkeyName = "F1", Description = "Plant Bomb"},
+                new Hotkey() { HotkeyName = "F2", Description = "Install Virus"}
+            };
+
+            Items.AddRange(initialHotkeys);
         }
 
         public void Show()
         {
             for (var i = 0; i < Items.Count(); i++)
             {
-                Console.WriteLine($"{i} Hotkey: {Items[i].Description}");
+                Console.WriteLine($"{Items[i].HotkeyName}: {Items[i].Description}");
             }
         }
     }

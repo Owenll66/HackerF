@@ -8,17 +8,27 @@ namespace HackerF.Model
 {
     class HackerFApp : CoreInstaller
     {
-        private IMenu CheatSheet { get; set; }
+        private IMenu _cheatingSheet;
+        private ICommandReader _commandReader;
 
         public HackerFApp() 
         {
             Initialise();
-            CheatSheet.Show();
+            _cheatingSheet = _container.Resolve<IMenu>();
+            _commandReader = _container.Resolve<ICommandReader>();
+
+            SetUpConsoleLayout();
         }
 
-        public HackerFApp(IMenu menu)
+        public void Start() 
         {
-            CheatSheet = menu;
+            _commandReader.ReadKey();
+        }
+
+        private void SetUpConsoleLayout()
+        {
+            Console.Title = "HackerF";
+            Console.ForegroundColor = ConsoleColor.Green;
         }
     }
 }

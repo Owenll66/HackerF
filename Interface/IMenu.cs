@@ -7,8 +7,6 @@ namespace HackerF.Interface
 {
     public interface IMenu
     {
-        IList<IMenuItem> Items { get; set; }
-
         void Show();
     }
 }

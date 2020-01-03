@@ -19,18 +19,10 @@ public class CoreInstaller
             return;
 
         _container = new WindsorContainer();
-        _container.Kernel.Resolver.AddSubResolver(new ListResolver(_container.Kernel));
 
         _container.Register(
-            Component.For<IMenuItem>().ImplementedBy<Hotkey>()
+            Component.For<IMenu>().ImplementedBy<CheatingSheet>(),
+            Component.For<ICommandReader>().ImplementedBy<CommandReader>()
         );
-
-        _container.Register(
-            Component.For<IMenu>().ImplementedBy<CheatingSheet>()
-        );
-
-        var cheatSheet = _container.Resolve<IMenu>();
-        cheatSheet.Show();
     }
 }
-

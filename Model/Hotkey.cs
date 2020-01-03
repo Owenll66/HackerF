@@ -6,7 +6,7 @@ using HackerF.Interface;
 
 namespace HackerF.Model
 {
-    public class Hotkey : IMenuItem
+    public class Hotkey
     {
         public string HotkeyName { get; set; }
 

@@ -11,6 +11,8 @@ namespace HackerF
         static void Main(string[] args)
         {
             var hackerF = new HackerFApp();
+            hackerF.Start();
+            Console.Read();
         }
     }
 }
