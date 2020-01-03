@@ -12,7 +12,6 @@ namespace HackerF
         {
             var hackerF = new HackerFApp();
             hackerF.Start();
-            Console.Read();
         }
     }
 }

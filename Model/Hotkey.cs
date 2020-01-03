@@ -11,5 +11,7 @@ namespace HackerF.Model
         public string HotkeyName { get; set; }
 
         public string Description { get ; set; }
+
+        public ConsoleKey key { get; set; }
     }
 }

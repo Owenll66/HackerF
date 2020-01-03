@@ -6,13 +6,13 @@ using HackerF.Interface;
 
 namespace HackerF.Model
 {
-    public class CheatingSheet : IMenu
+    public class CheatingSheet : IHotkeyMenu
     {
-        public List<Hotkey> Items { get; set; }
+        private List<Hotkey> _hotkeys { get; set; }
 
         public CheatingSheet() 
         {
-            Items = new List<Hotkey>();
+            _hotkeys = new List<Hotkey>();
             InitialiseCheatingSheet();
         }
 
@@ -20,19 +20,24 @@ namespace HackerF.Model
         {
             var initialHotkeys = new List<Hotkey>
             {
-                new Hotkey() { HotkeyName = "F1", Description = "Plant Bomb"},
-                new Hotkey() { HotkeyName = "F2", Description = "Install Virus"}
+                new Hotkey() { HotkeyName = "F1", Description = "Plant Bomb", key = ConsoleKey.F1},
+                new Hotkey() { HotkeyName = "F2", Description = "Install Virus", key = ConsoleKey.F2}
             };
 
-            Items.AddRange(initialHotkeys);
+            _hotkeys.AddRange(initialHotkeys);
         }
 
         public void Show()
         {
-            for (var i = 0; i < Items.Count(); i++)
+            for (var i = 0; i < _hotkeys.Count(); i++)
             {
-                Console.WriteLine($"{Items[i].HotkeyName}: {Items[i].Description}");
+                Console.WriteLine($"{_hotkeys[i].HotkeyName}: {_hotkeys[i].Description}");
             }
+        }
+
+        public List<Hotkey> GetHotkeys()
+        {
+            return _hotkeys;
         }
     }
 }

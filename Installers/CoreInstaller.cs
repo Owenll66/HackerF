@@ -21,7 +21,7 @@ public class CoreInstaller
         _container = new WindsorContainer();
 
         _container.Register(
-            Component.For<IMenu>().ImplementedBy<CheatingSheet>(),
+            Component.For<IHotkeyMenu>().ImplementedBy<CheatingSheet>(),
             Component.For<ICommandReader>().ImplementedBy<CommandReader>()
         );
     }

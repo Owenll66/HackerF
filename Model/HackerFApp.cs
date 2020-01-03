@@ -8,13 +8,11 @@ namespace HackerF.Model
 {
     class HackerFApp : CoreInstaller
     {
-        private IMenu _cheatingSheet;
         private ICommandReader _commandReader;
 
         public HackerFApp() 
         {
             Initialise();
-            _cheatingSheet = _container.Resolve<IMenu>();
             _commandReader = _container.Resolve<ICommandReader>();
 
             SetUpConsoleLayout();

@@ -5,8 +5,10 @@ using System.Linq;
 
 namespace HackerF.Interface
 {
-    public interface IMenu
+    public interface IHotkeyMenu
     {
         void Show();
+
+        List<Hotkey> GetHotkeys();
     }
 }
