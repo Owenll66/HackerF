@@ -11,6 +11,7 @@ namespace HackerF.Model
         private ICommandReader _commandReader;
         private IDelayPrintService _delayPrintService;
         private IAsciiImageService _asciiImageService;
+        private IHotkeyFunctionService _hotkeyFunctionService;
 
         public HackerFApp() 
         {
@@ -18,6 +19,10 @@ namespace HackerF.Model
             _commandReader = _container.Resolve<ICommandReader>();
             _delayPrintService = _container.Resolve<IDelayPrintService>();
             _asciiImageService = _container.Resolve<IAsciiImageService>();
+            _hotkeyFunctionService = _container.Resolve<IHotkeyFunctionService>();
+
+            var cheatingSheet = new CheatingSheet(_hotkeyFunctionService);
+            cheatingSheet.Initialise();
 
             SetUpConsoleLayout();
         }

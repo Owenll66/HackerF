@@ -6,38 +6,46 @@ using HackerF.Interface;
 
 namespace HackerF.Model
 {
-    public class CheatingSheet : IHotkeyMenu
+    public class CheatingSheet
     {
-        private List<Hotkey> _hotkeys { get; set; }
+        public static List<Hotkey> HotKeys { get; set; }
+        private IHotkeyFunctionService _hotkeyFunctionService { get; set; }
 
-        public CheatingSheet() 
+        public CheatingSheet(IHotkeyFunctionService hotkeyFunctionService) 
         {
-            _hotkeys = new List<Hotkey>();
-            InitialiseCheatingSheet();
+            _hotkeyFunctionService = hotkeyFunctionService;
         }
 
-        private void InitialiseCheatingSheet() 
+        public void Initialise() 
         {
+            HotKeys = new List<Hotkey>();
             var initialHotkeys = new List<Hotkey>
             {
-                new Hotkey() { HotkeyName = "F1", Description = "Plant Bomb", key = ConsoleKey.F1},
-                new Hotkey() { HotkeyName = "F2", Description = "Install Virus", key = ConsoleKey.F2}
+                new Hotkey
+                { 
+                    Name = "F1",
+                    Description = "Plant Bomb", key = ConsoleKey.F1,
+                    ExecutionFunction = _hotkeyFunctionService.ShowMenu
+                },
+
+                new Hotkey() 
+                { 
+                    Name = "F2", 
+                    Description = "Install Virus", 
+                    key = ConsoleKey.F2,
+                    ExecutionFunction = _hotkeyFunctionService.ShowMenu
+                }
             };
 
-            _hotkeys.AddRange(initialHotkeys);
+            HotKeys.AddRange(initialHotkeys);
         }
 
         public void Show()
         {
-            for (var i = 0; i < _hotkeys.Count(); i++)
+            for (var i = 0; i < HotKeys.Count(); i++)
             {
-                Console.WriteLine($"{_hotkeys[i].HotkeyName}: {_hotkeys[i].Description}");
+                Console.WriteLine($"{HotKeys[i].Name}: {HotKeys[i].Description}");
             }
-        }
-
-        public List<Hotkey> GetHotkeys()
-        {
-            return _hotkeys;
         }
     }
 }

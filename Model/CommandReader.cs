@@ -14,13 +14,11 @@ namespace HackerF.Model
         private static int _currentScriptPosition;
         private static string _script;
 
-        private IHotkeyMenu _hotkeyMenu;
         private IFileReader _fileReader;
         private IDelayPrintService _delayPrintService;
 
-        public CommandReader(IHotkeyMenu hotkeyMenu, IFileReader fileReader, IDelayPrintService delayPrintService)
+        public CommandReader(IFileReader fileReader, IDelayPrintService delayPrintService)
         {
-            _hotkeyMenu = hotkeyMenu;
             _fileReader = fileReader;
             _delayPrintService = delayPrintService;
 
@@ -42,8 +40,7 @@ namespace HackerF.Model
 
         private void checkHotkey(ConsoleKeyInfo key)
         {
-            var hotkey = _hotkeyMenu
-                .GetHotkeys()
+            var hotkey = CheatingSheet.HotKeys
                 .Where(h => h.key == key.Key)
                 .FirstOrDefault();
 
