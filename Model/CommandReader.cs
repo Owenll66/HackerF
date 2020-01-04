@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 
@@ -9,14 +10,22 @@ namespace HackerF.Model
 {
     public class CommandReader : ICommandReader
     {
-        private IHotkeyMenu _hotkeyMenu;
+        private readonly string _hackScriptLocaton = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"HackerScripts\HackerScript1.txt");
+        private static int _currentScriptPosition;
+        private static string _script;
 
-        public CommandReader(IHotkeyMenu hotkeyMenu)
+        private IHotkeyMenu _hotkeyMenu;
+        private IFileReader _fileReader;
+        private IDelayPrintService _delayPrintService;
+
+        public CommandReader(IHotkeyMenu hotkeyMenu, IFileReader fileReader, IDelayPrintService delayPrintService)
         {
             _hotkeyMenu = hotkeyMenu;
+            _fileReader = fileReader;
+            _delayPrintService = delayPrintService;
 
-            Thread commandReader = new Thread(new ThreadStart(ReadKey));
-            commandReader.Start();
+            _script = _fileReader.ReadFile(_hackScriptLocaton);
+            _currentScriptPosition = 0;
         }
 
         public void ReadKey()
@@ -44,9 +53,14 @@ namespace HackerF.Model
                 PrintCodeScript();
         }
 
-        private void PrintCodeScript()
+        private void PrintCodeScript(int typeSpeed = 2)
         {
-            
+            if (_currentScriptPosition + typeSpeed > _script.Length)
+                _currentScriptPosition = 0;
+
+            _delayPrintService.DelayPrintText(_script.Substring(_currentScriptPosition, typeSpeed), 30);
+
+            _currentScriptPosition = _currentScriptPosition + typeSpeed;
         }
     }
 }

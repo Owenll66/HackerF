@@ -9,7 +9,11 @@ namespace HackerF.Service
     {
         public void DelayPrintText(string text, int delay)
         {
-            
+            for (int i = 0; i < text.Length; i++) 
+            {
+                Console.Write(text[i]);
+                System.Threading.Thread.Sleep(delay);
+            }
         }
 
         public void WavePrint(List<string> info, int delay)
