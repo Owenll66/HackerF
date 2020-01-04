@@ -6,7 +6,7 @@ namespace HackerF.Interface
 {
     interface IDelayPrintService
     {
-        void WavePrint(List<string> info, int delay, int width);
+        void WavePrint(List<string> info, int delay);
 
         void DelayPrintText(string text, int delay);
     }

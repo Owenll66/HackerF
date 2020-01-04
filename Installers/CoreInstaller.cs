@@ -23,7 +23,8 @@ public class CoreInstaller
         _container.Register(
             Component.For<IHotkeyMenu>().ImplementedBy<CheatingSheet>(),
             Component.For<ICommandReader>().ImplementedBy<CommandReader>(),
-            Component.For<IDelayPrintService>().ImplementedBy<DelayPrintService>()
+            Component.For<IDelayPrintService>().ImplementedBy<DelayPrintService>(),
+            Component.For<IAsciiImageService>().ImplementedBy<AsciiImageService>()
         );
     }
 }

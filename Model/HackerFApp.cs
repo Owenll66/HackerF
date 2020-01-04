@@ -10,20 +10,22 @@ namespace HackerF.Model
     {
         private ICommandReader _commandReader;
         private IDelayPrintService _delayPrintService;
+        private IAsciiImageService _asciiImageService;
 
         public HackerFApp() 
         {
             Initialise();
             _commandReader = _container.Resolve<ICommandReader>();
             _delayPrintService = _container.Resolve<IDelayPrintService>();
+            _asciiImageService = _container.Resolve<IAsciiImageService>();
 
             SetUpConsoleLayout();
         }
 
         public void Start()
         {
-            var logo = GetLogo();
-            _delayPrintService.WavePrint(logo, 100, 1);
+            var logo = _asciiImageService.GetHackFLogo();
+            _delayPrintService.WavePrint(logo, 100);
             _commandReader.ReadKey();
         }
 
@@ -31,18 +33,6 @@ namespace HackerF.Model
         {
             Console.Title = "HackerF";
             Console.ForegroundColor = ConsoleColor.Green;
-        }
-
-        private List<String> GetLogo()
-        {
-            var logo = new List<string>();
-            logo.Add("██╗  ██╗  █████╗   ██████╗ ██╗  ██╗ ███████╗ ██████╗  ███████╗");
-            logo.Add("██║  ██║ ██╔══██╗ ██╔════╝ ██║ ██╔╝ ██╔════╝ ██╔══██╗ ██╔════╝");
-            logo.Add("███████║ ███████║ ██║      █████╔╝  █████╗   ██████╔╝ █████╗  ");
-            logo.Add("██╔══██║ ██╔══██║ ██║      ██╔═██╗  ██╔══╝   ██╔══██╗ ██╔══╝  ");
-            logo.Add("██║  ██║ ██║  ██║ ╚██████╗ ██║  ██╗ ███████╗ ██║  ██║ ██║     ");
-            logo.Add("╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝ ╚═╝  ╚═╝ ╚══════╝ ╚═╝  ╚═╝ ╚═╝     ");
-            return logo;
         }
     }
 }

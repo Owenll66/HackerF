@@ -12,14 +12,35 @@ namespace HackerF.Service
             
         }
 
-        public void WavePrint(List<string> info, int delay, int processingWidth)
+        public void WavePrint(List<string> info, int delay)
         {
-            var totalwidth = info.Max(s => s.Length);
-            for (int i = 0; i < totalwidth; i += processingWidth) 
+            AdjustLength(info);
+
+            var totalwidth = info[0].Length;
+
+            for (int i = 0; i <= totalwidth ; i += 1) 
             {
-                foreach (var s in info)
-                    Console.WriteLine($"\r {s.Substring(i, Math.Min(i + processingWidth, s.Length - 1))}");
-                System.Threading.Thread.Sleep(100);
+                var output = "";
+                foreach (var s in info) 
+                    output = output + $"{s.Substring(0, i)}\n";
+                    
+                Console.SetCursorPosition(0, 3);
+                Console.Write(output);
+
+                System.Threading.Thread.Sleep(80);
+            }
+        }
+
+        private void AdjustLength(List<String> lines)
+        {
+            var maxlength = lines.Max(l => l.Length);
+            for (int i = 0; i < lines.Count; i++)
+            {
+                var lineLength = lines[i].Length;
+                for (int j = 0; j < maxlength - lineLength; j++) 
+                {
+                    lines[i] = lines[i] + " ";
+                }
             }
         }
     }
