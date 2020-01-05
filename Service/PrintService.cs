@@ -7,7 +7,20 @@ namespace HackerF.Service
 {
     public class PrintService : IPrintService
     {
-        public void DelayPrintText(string text, int delay)
+        public void Print(List<string> info)
+        {
+            AdjustLength(info);
+
+            var totalwidth = info[0].Length;
+
+            var output = "";
+            foreach (var s in info)
+                output = output + s + "\n";
+
+            Console.Write(output);
+        }
+
+        public void DelayPrint(string text, int delay)
         {
             for (int i = 0; i < text.Length; i++) 
             {
@@ -18,6 +31,8 @@ namespace HackerF.Service
 
         public void WavePrint(List<string> info, int delay)
         {
+            var cursorLeftPos = Console.CursorLeft;
+            var cursorTopPos = Console.CursorTop;
             AdjustLength(info);
 
             var totalwidth = info[0].Length;
@@ -27,8 +42,8 @@ namespace HackerF.Service
                 var output = "";
                 foreach (var s in info) 
                     output = output + $"{s.Substring(0, i)}\n";
-                    
-                Console.SetCursorPosition(0, 3);
+
+                Console.SetCursorPosition(cursorLeftPos, cursorTopPos);
                 Console.Write(output);
 
                 System.Threading.Thread.Sleep(80);

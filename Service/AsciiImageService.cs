@@ -19,5 +19,12 @@ namespace HackerF.Service
             logo.Add("╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝ ╚═╝  ╚═╝ ╚══════╝ ╚═╝  ╚═╝ ╚═╝ ");
             return logo;
         }
+
+        public List<string> GetProcessBar()
+        {
+            var logo = new List<string>();
+            logo.Add("|██████████████████████████████████████████████████████████|");
+            return logo;
+        }
     }
 }

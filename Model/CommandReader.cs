@@ -55,7 +55,7 @@ namespace HackerF.Model
             if (_currentScriptPosition + typeSpeed > _script.Length)
                 _currentScriptPosition = 0;
 
-            _delayPrintService.DelayPrintText(_script.Substring(_currentScriptPosition, typeSpeed), 30);
+            _delayPrintService.DelayPrint(_script.Substring(_currentScriptPosition, typeSpeed), 30);
 
             _currentScriptPosition = _currentScriptPosition + typeSpeed;
         }
