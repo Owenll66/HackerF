@@ -16,7 +16,7 @@ namespace HackerF.Service
             foreach (var s in rows)
                 output = output + s + "\n";
             
-            Console.WriteLine(output);
+            Console.Write(output);
         }
 
         public void DelayPrint(string txt, int delay)
@@ -28,27 +28,37 @@ namespace HackerF.Service
             }
         }
 
-        public void WavePrint(string original, int delay)
+        public void WavePrint(string original, int delay, bool showPercentage = false)
         {
+            Console.CursorVisible = false;
+
             var rows = SplitToList(original);
             AdjustLength(rows);
 
-            var cursorLeftPos = Console.CursorLeft;
-            var cursorTopPos = Console.CursorTop;
+            var cursorLeftStart = Console.CursorLeft;
+            var cursorTopStart = Console.CursorTop;
 
             var totalwidth = rows[0].Length;
 
             for (int i = 0; i <= totalwidth; i += 1)
             {
                 var output = "";
-                foreach (var s in rows)
+                foreach (var s in rows) 
+                {
+                    if (showPercentage) 
+                    {
+                        Console.SetCursorPosition(cursorLeftStart + totalwidth + 2, cursorTopStart);
+                        Console.Write(((decimal) i / (decimal) totalwidth * 100).ToString("#.##") + "%");
+                    }
                     output = output + $"{s.Substring(0, i)}\n";
+                }
 
-                Console.SetCursorPosition(cursorLeftPos, cursorTopPos);
+                Console.SetCursorPosition(cursorLeftStart, cursorTopStart);
                 Console.Write(output);
 
-                System.Threading.Thread.Sleep(80);
+                System.Threading.Thread.Sleep(delay);
             }
+            Console.CursorVisible = true;
         }
 
         private List<string> SplitToList(string original)
@@ -62,11 +72,18 @@ namespace HackerF.Service
             for (int i = 0; i < lines.Count; i++)
             {
                 var lineLength = lines[i].Length;
-                for (int j = 0; j < maxlength - lineLength; j++) 
-                {
-                    lines[i] = lines[i] + " ";
-                }
+                lines[i] = lines[i] + new string(' ', maxlength - lineLength);
             }
+        }
+
+        public void StaticPrint(string original)
+        {
+            var cursorLeftPos = Console.CursorLeft;
+            var cursorTopPos = Console.CursorTop;
+
+            Print(original);
+
+            Console.SetCursorPosition(cursorLeftPos, cursorTopPos);
         }
     }
 }

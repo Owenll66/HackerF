@@ -27,14 +27,14 @@ namespace HackerF.Service
 
         public string GetProcessBarEdges1(string processBar) 
         {
-            var processBarEdges = "||";
+            var processBarEdges = "|";
 
             for (var i = 0; i < processBar.Length; i++)
             {
                 processBarEdges += " ";
             }
 
-            processBarEdges += "||";
+            processBarEdges += "|";
 
             return processBarEdges;
         }

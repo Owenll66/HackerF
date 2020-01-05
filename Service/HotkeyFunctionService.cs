@@ -35,19 +35,33 @@ namespace HackerF.Service
 
         public void InstallVirus()
         {
+            Console.CursorVisible = false;
+            _printService.WavePrint("Preparing Virus Injection On The Target ...", 30);
+            Console.WriteLine();
+            processingProcessBar(50);
+            Console.WriteLine();
+            _printService.WavePrint("Injecting Virus ...", 30);
+            Console.WriteLine();
+            processingProcessBar(75);
+            Console.WriteLine();
+            _printService.WavePrint("Virus Injected Successfully!", 30);
+            Console.WriteLine();
+            Console.CursorVisible = true;
+        }
+
+        private void processingProcessBar(int delay) 
+        {
             var processBar = _asciiImageService.GetProcessBar1();
             var processBarEdges = _asciiImageService.GetProcessBarEdges1(processBar);
 
-            Console.WriteLine();
-
             var edgeWidth = (processBarEdges.Length - processBar.Length) / 2;
             var cursorTop = Console.CursorTop;
-            
+
             _printService.Print(processBarEdges);
 
             Console.SetCursorPosition(Console.CursorLeft + edgeWidth, cursorTop);
-            
-            _printService.WavePrint(processBar, 100);
+
+            _printService.WavePrint(processBar, delay, true);
         }
     }
 }
