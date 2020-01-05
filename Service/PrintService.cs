@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace HackerF.Service
 {
-    public class DelayPrintService : IDelayPrintService
+    public class PrintService : IPrintService
     {
         public void DelayPrintText(string text, int delay)
         {

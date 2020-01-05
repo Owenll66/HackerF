@@ -39,13 +39,5 @@ namespace HackerF.Model
 
             HotKeys.AddRange(initialHotkeys);
         }
-
-        public void Show()
-        {
-            for (var i = 0; i < HotKeys.Count(); i++)
-            {
-                Console.WriteLine($"{HotKeys[i].Name}: {HotKeys[i].Description}");
-            }
-        }
     }
 }

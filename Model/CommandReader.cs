@@ -15,9 +15,9 @@ namespace HackerF.Model
         private static string _script;
 
         private IFileReader _fileReader;
-        private IDelayPrintService _delayPrintService;
+        private IPrintService _delayPrintService;
 
-        public CommandReader(IFileReader fileReader, IDelayPrintService delayPrintService)
+        public CommandReader(IFileReader fileReader, IPrintService delayPrintService)
         {
             _fileReader = fileReader;
             _delayPrintService = delayPrintService;
@@ -45,7 +45,7 @@ namespace HackerF.Model
                 .FirstOrDefault();
 
             if (hotkey != null)
-                Console.WriteLine(hotkey.Description);
+                hotkey.ExecutionFunction.Invoke();
             else
                 PrintCodeScript();
         }

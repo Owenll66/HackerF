@@ -9,7 +9,7 @@ namespace HackerF.Model
     class HackerFApp : CoreInstaller
     {
         private ICommandReader _commandReader;
-        private IDelayPrintService _delayPrintService;
+        private IPrintService _delayPrintService;
         private IAsciiImageService _asciiImageService;
         private IHotkeyFunctionService _hotkeyFunctionService;
 
@@ -17,7 +17,7 @@ namespace HackerF.Model
         {
             Initialise();
             _commandReader = _container.Resolve<ICommandReader>();
-            _delayPrintService = _container.Resolve<IDelayPrintService>();
+            _delayPrintService = _container.Resolve<IPrintService>();
             _asciiImageService = _container.Resolve<IAsciiImageService>();
             _hotkeyFunctionService = _container.Resolve<IHotkeyFunctionService>();
 

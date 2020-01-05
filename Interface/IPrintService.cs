@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace HackerF.Interface
 {
-    public interface IDelayPrintService
+    public interface IPrintService
     {
         void WavePrint(List<string> info, int delay);
 

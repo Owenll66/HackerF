@@ -23,7 +23,7 @@ public class CoreInstaller
         _container.Register(
             Component.For<IHotkeyFunctionService>().ImplementedBy<HotkeyFunctionService>(),
             Component.For<ICommandReader>().ImplementedBy<CommandReader>(),
-            Component.For<IDelayPrintService>().ImplementedBy<DelayPrintService>(),
+            Component.For<IPrintService>().ImplementedBy<PrintService>(),
             Component.For<IAsciiImageService>().ImplementedBy<AsciiImageService>(),
             Component.For<IFileReader>().ImplementedBy<FileReader>()
         );
