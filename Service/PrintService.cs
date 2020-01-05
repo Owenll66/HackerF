@@ -11,8 +11,6 @@ namespace HackerF.Service
         {
             AdjustLength(info);
 
-            var totalwidth = info[0].Length;
-
             var output = "";
             foreach (var s in info)
                 output = output + s + "\n";
