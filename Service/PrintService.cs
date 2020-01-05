@@ -7,38 +7,41 @@ namespace HackerF.Service
 {
     public class PrintService : IPrintService
     {
-        public void Print(List<string> info)
+        public void Print(string original)
         {
-            AdjustLength(info);
+            var rows = SplitToList(original);
+            AdjustLength(rows);
 
             var output = "";
-            foreach (var s in info)
+            foreach (var s in rows)
                 output = output + s + "\n";
-
-            Console.Write(output);
+            
+            Console.WriteLine(output);
         }
 
-        public void DelayPrint(string text, int delay)
+        public void DelayPrint(string txt, int delay)
         {
-            for (int i = 0; i < text.Length; i++) 
+            for (int i = 0; i < txt.Length; i++)
             {
-                Console.Write(text[i]);
+                Console.Write(txt[i]);
                 System.Threading.Thread.Sleep(delay);
             }
         }
 
-        public void WavePrint(List<string> info, int delay)
+        public void WavePrint(string original, int delay)
         {
+            var rows = SplitToList(original);
+            AdjustLength(rows);
+
             var cursorLeftPos = Console.CursorLeft;
             var cursorTopPos = Console.CursorTop;
-            AdjustLength(info);
 
-            var totalwidth = info[0].Length;
+            var totalwidth = rows[0].Length;
 
-            for (int i = 0; i <= totalwidth ; i += 1) 
+            for (int i = 0; i <= totalwidth; i += 1)
             {
                 var output = "";
-                foreach (var s in info) 
+                foreach (var s in rows)
                     output = output + $"{s.Substring(0, i)}\n";
 
                 Console.SetCursorPosition(cursorLeftPos, cursorTopPos);
@@ -46,6 +49,11 @@ namespace HackerF.Service
 
                 System.Threading.Thread.Sleep(80);
             }
+        }
+
+        private List<string> SplitToList(string original)
+        {
+            return original.Split("\n").ToList();
         }
 
         private void AdjustLength(List<String> lines)

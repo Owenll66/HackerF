@@ -7,5 +7,7 @@ namespace HackerF.Interface
     public interface IHotkeyFunctionService
     {
         void ShowMenu();
+
+        void InstallVirus();
     }
 }

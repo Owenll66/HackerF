@@ -8,23 +8,35 @@ namespace HackerF.Service
 {
     class AsciiImageService : IAsciiImageService
     {
-        public List<string> GetHackFLogo()
+        public string GetHackFLogo()
         {
-            var logo = new List<string>();
-            logo.Add("██╗  ██╗  █████╗   ██████╗ ██╗  ██╗ ███████╗ ██████╗  ███████╗     ");
-            logo.Add("██║  ██║ ██╔══██╗ ██╔════╝ ██║ ██╔╝ ██╔════╝ ██╔══██╗ ██╔════╝");
-            logo.Add("███████║ ███████║ ██║      █████╔╝  █████╗   ██████╔╝ █████╗      ");
-            logo.Add("██╔══██║ ██╔══██║ ██║      ██╔═██╗  ██╔══╝   ██╔══██╗ ██╔══╝   ");
-            logo.Add("██║  ██║ ██║  ██║ ╚██████╗ ██║  ██╗ ███████╗ ██║  ██║ ██║ ");
-            logo.Add("╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝ ╚═╝  ╚═╝ ╚══════╝ ╚═╝  ╚═╝ ╚═╝ ");
+            var logo = "";
+            logo += "██╗  ██╗  █████╗   ██████╗ ██╗  ██╗ ███████╗ ██████╗  ███████╗     \n";
+            logo += "██║  ██║ ██╔══██╗ ██╔════╝ ██║ ██╔╝ ██╔════╝ ██╔══██╗ ██╔════╝\n";
+            logo += "███████║ ███████║ ██║      █████╔╝  █████╗   ██████╔╝ █████╗      \n";
+            logo += "██╔══██║ ██╔══██║ ██║      ██╔═██╗  ██╔══╝   ██╔══██╗ ██╔══╝   \n";
+            logo += "██║  ██║ ██║  ██║ ╚██████╗ ██║  ██╗ ███████╗ ██║  ██║ ██║ \n";
+            logo += "╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝ ╚═╝  ╚═╝ ╚══════╝ ╚═╝  ╚═╝ ╚═╝ \n";
             return logo;
         }
 
-        public List<string> GetProcessBar()
+        public string GetProcessBar1()
         {
-            var logo = new List<string>();
-            logo.Add("|██████████████████████████████████████████████████████████|");
-            return logo;
+            return "██████████████████████████████████████████████████";
+        }
+
+        public string GetProcessBarEdges1(string processBar) 
+        {
+            var processBarEdges = "||";
+
+            for (var i = 0; i < processBar.Length; i++)
+            {
+                processBarEdges += " ";
+            }
+
+            processBarEdges += "||";
+
+            return processBarEdges;
         }
     }
 }

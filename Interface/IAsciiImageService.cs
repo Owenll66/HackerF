@@ -4,8 +4,12 @@ using System.Linq;
 
 namespace HackerF.Interface
 {
-    internal interface IAsciiImageService
+    public interface IAsciiImageService
     {
-        List<string> GetHackFLogo();
+        string GetHackFLogo();
+
+        string GetProcessBar1();
+
+        string GetProcessBarEdges1(string processBar);
     }
 }

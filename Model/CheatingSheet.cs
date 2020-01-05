@@ -33,6 +33,13 @@ namespace HackerF.Model
                     Name = "F2", 
                     Description = "Install Virus", 
                     key = ConsoleKey.F2,
+                    ExecutionFunction = _hotkeyFunctionService.InstallVirus
+                },
+
+                new Hotkey
+                {
+                    Name = "F9",
+                    Description = "Show Hacking Menu", key = ConsoleKey.F9,
                     ExecutionFunction = _hotkeyFunctionService.ShowMenu
                 }
             };

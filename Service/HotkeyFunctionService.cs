@@ -9,9 +9,13 @@ namespace HackerF.Service
 {
     public class HotkeyFunctionService : IHotkeyFunctionService
     {
-        public HotkeyFunctionService() 
-        {
+        private IPrintService _printService;
+        private IAsciiImageService _asciiImageService;
 
+        public HotkeyFunctionService(IPrintService printService, IAsciiImageService asciiImageService) 
+        {
+            _printService = printService;
+            _asciiImageService = asciiImageService;
         }
 
         public void ShowMenu()
@@ -27,6 +31,23 @@ namespace HackerF.Service
                 Console.WriteLine(String.Format("| {0, -5} | {1, -34} |", hotKeys[i].Name, hotKeys[i].Description));
             }
             Console.Write(" -------------------------------------------- \n");
+        }
+
+        public void InstallVirus()
+        {
+            var processBar = _asciiImageService.GetProcessBar1();
+            var processBarEdges = _asciiImageService.GetProcessBarEdges1(processBar);
+
+            Console.WriteLine();
+
+            var edgeWidth = (processBarEdges.Length - processBar.Length) / 2;
+            var cursorTop = Console.CursorTop;
+            
+            _printService.Print(processBarEdges);
+
+            Console.SetCursorPosition(Console.CursorLeft + edgeWidth, cursorTop);
+            
+            _printService.WavePrint(processBar, 100);
         }
     }
 }
