@@ -25,7 +25,7 @@ namespace HackerF.Model
                 { 
                     Name = "F1",
                     Description = "Plant Bomb", key = ConsoleKey.F1,
-                    ExecutionFunction = _hotkeyFunctionService.ShowMenu
+                    ExecutionFunction = _hotkeyFunctionService.PlantBomb
                 },
 
                 new Hotkey() 

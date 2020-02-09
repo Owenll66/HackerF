@@ -31,14 +31,14 @@ namespace HackerF.Model
             while (true)
             {
                 var key = Console.ReadKey(true);
-                checkHotkey(key);
+                CheckHotkey(key);
 
                 if (key.Key == ConsoleKey.Escape)
                     System.Environment.Exit(0);
             }
         }
 
-        private void checkHotkey(ConsoleKeyInfo key)
+        private void CheckHotkey(ConsoleKeyInfo key)
         {
             var hotkey = CheatingSheet.HotKeys
                 .Where(h => h.key == key.Key)

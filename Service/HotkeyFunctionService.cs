@@ -33,6 +33,11 @@ namespace HackerF.Service
             Console.Write(" -------------------------------------------- \n");
         }
 
+        public void PlantBomb() 
+        {
+            
+        }
+
         public void InstallVirus()
         {
             Console.CursorVisible = false;

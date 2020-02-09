@@ -14,7 +14,7 @@ namespace HackerF.Model
             if (File.Exists(fileLocation))
                 return File.ReadAllText(fileLocation);
 
-            return "Opps Hacker Scripts Not found...";
+            throw new Exception("Opps Hacker Scripts Not found...");
         }
     }
 }

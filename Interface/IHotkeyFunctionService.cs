@@ -8,6 +8,8 @@ namespace HackerF.Interface
     {
         void ShowMenu();
 
+        void PlantBomb();
+
         void InstallVirus();
     }
 }
