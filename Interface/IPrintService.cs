@@ -10,8 +10,10 @@ namespace HackerF.Interface
 
         void WavePrint(string info, int delay, bool showPercentage = false);
 
-        void DelayPrint(string text, int delay);
+        void DelayPrint(string info, int delay);
 
-        void StaticPrint(string text);
+        void StaticPrint(string info);
+
+        void BottomToTopClear(string info, int delay);
     }
 }

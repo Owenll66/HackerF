@@ -7,9 +7,9 @@ namespace HackerF.Service
 {
     public class PrintService : IPrintService
     {
-        public void Print(string original)
+        public void Print(string info)
         {
-            var rows = SplitToList(original);
+            var rows = SplitToList(info);
             AdjustLength(rows);
 
             var output = "";
@@ -19,20 +19,20 @@ namespace HackerF.Service
             Console.Write(output);
         }
 
-        public void DelayPrint(string txt, int delay)
+        public void DelayPrint(string info, int delay)
         {
-            for (int i = 0; i < txt.Length; i++)
+            for (var i = 0; i < info.Length; i++)
             {
-                Console.Write(txt[i]);
+                Console.Write(info[i]);
                 System.Threading.Thread.Sleep(delay);
             }
         }
 
-        public void WavePrint(string original, int delay, bool showPercentage = false)
+        public void WavePrint(string info, int delay, bool showPercentage = false)
         {
             Console.CursorVisible = false;
 
-            var rows = SplitToList(original);
+            var rows = SplitToList(info);
             AdjustLength(rows);
 
             var cursorLeftStart = Console.CursorLeft;
@@ -40,7 +40,7 @@ namespace HackerF.Service
 
             var totalwidth = rows[0].Length;
 
-            for (int i = 0; i <= totalwidth; i += 1)
+            for (var i = 0; i <= totalwidth; i += 1)
             {
                 var output = "";
                 foreach (var s in rows) 
@@ -61,29 +61,53 @@ namespace HackerF.Service
             Console.CursorVisible = true;
         }
 
-        private List<string> SplitToList(string original)
+        private List<string> SplitToList(string info)
         {
-            return original.Split("\n").ToList();
+            return info.Split("\n").ToList();
         }
 
         private void AdjustLength(List<String> lines)
         {
             var maxlength = lines.Max(l => l.Length);
-            for (int i = 0; i < lines.Count; i++)
+            for (var i = 0; i < lines.Count; i++)
             {
                 var lineLength = lines[i].Length;
                 lines[i] = lines[i] + new string(' ', maxlength - lineLength);
             }
         }
 
-        public void StaticPrint(string original)
+        public void StaticPrint(string info)
         {
             var cursorLeftPos = Console.CursorLeft;
             var cursorTopPos = Console.CursorTop;
 
-            Print(original);
+            Print(info);
 
             Console.SetCursorPosition(cursorLeftPos, cursorTopPos);
+        }
+
+        public void BottomToTopClear(string info, int delay)
+        {
+            Console.CursorVisible = false;
+            var rows = SplitToList(info);
+            AdjustLength(rows);
+
+            var totalwidth = rows[0].Length;
+
+            for (var i = 0; i < rows.Count; i++) 
+            {
+                var result = string.Join("\n", rows.GetRange(0, rows.Count - i)) + "\n";
+                for (var j = 0; j < i; j++) 
+                {
+                    result += new string(' ', totalwidth) + "\n";
+                }
+
+                StaticPrint(result);
+
+                System.Threading.Thread.Sleep(delay);
+            }
+
+            Console.CursorVisible = true;
         }
     }
 }

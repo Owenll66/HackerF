@@ -29,10 +29,13 @@ namespace HackerF.Model
 
         public void Start()
         {
-            Console.SetCursorPosition(0, 1);
-            
             var logo = _asciiImageService.GetHackFLogo();
+
+            Console.SetCursorPosition(0, 1);
             _delayPrintService.WavePrint(logo, 50);
+
+            Console.SetCursorPosition(0, 1);
+            _delayPrintService.BottomToTopClear(logo, 400);
 
             Console.Clear();
 

@@ -36,15 +36,21 @@ namespace HackerF.Service
         public void InstallVirus()
         {
             Console.CursorVisible = false;
+            Console.WriteLine();
             _printService.WavePrint("Preparing Virus Injection On The Target ...", 30);
+
             Console.WriteLine();
             processingProcessBar(50);
+
             Console.WriteLine();
             _printService.WavePrint("Injecting Virus ...", 30);
+
             Console.WriteLine();
             processingProcessBar(75);
+
             Console.WriteLine();
             _printService.WavePrint("Virus Injected Successfully!", 30);
+
             Console.WriteLine();
             Console.CursorVisible = true;
         }
